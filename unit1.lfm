@@ -1,0 +1,507 @@
+object Form1: TForm1
+  Left = 811
+  Height = 347
+  Hint = '-'
+  Top = 329
+  Width = 449
+  Caption = 'Password Generator'
+  ClientHeight = 347
+  ClientWidth = 449
+  Color = clWindowFrame
+  Font.CharSet = ANSI_CHARSET
+  Font.Color = clWhite
+  Font.Height = -15
+  Font.Name = 'Segoe UI'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  OnClose = FormClose
+  OnShow = FormCreate
+  object NumberToGen: TSpinEdit
+    AnchorSideLeft.Control = EditCustomSymbols
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideRight.Control = EditCustomSymbols
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = EditCustomSymbols
+    Left = 330
+    Height = 29
+    Hint = 'Choose How Many Passwords to'#13#10'generate each time the button is pressed'#13#10'Max :50'
+    Top = 101
+    Width = 50
+    Alignment = taCenter
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Bottom = 6
+    Color = clWindowFrame
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    MaxValue = 50
+    MinValue = 1
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    Value = 1
+  end
+  object PasswordLength: TSpinEdit
+    AnchorSideRight.Control = EditCustomSymbols
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = NumberToGen
+    Left = 330
+    Height = 29
+    Hint = 'Set the length of generated passwords'#13#10'Range 8 - 30'
+    Top = 66
+    Width = 50
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Bottom = 6
+    Color = clWindowFrame
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    MaxValue = 30
+    MinValue = 8
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    Value = 16
+  end
+  object CustomSymbols: TEdit
+    AnchorSideLeft.Control = Label8
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Label8
+    AnchorSideTop.Side = asrCenter
+    AnchorSideBottom.Side = asrBottom
+    Left = 200
+    Height = 23
+    Hint = 'List Of Symbols To Use'
+    Top = 137
+    Width = 144
+    AutoSize = False
+    AutoSelect = False
+    BorderSpacing.Left = 10
+    BorderSpacing.Bottom = 5
+    Color = clWindowFrame
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
+    ParentShowHint = False
+    ReadOnly = True
+    ShowHint = True
+    TabOrder = 4
+    Text = '@#*-_?'
+    TextHint = 'List Of Symbols To Use'
+  end
+  object Gen: TButton
+    Left = 336
+    Height = 25
+    Hint = 'Generate the [Number to Generate] passwords '#13#10'of [Password Length] and put the results into'#13#10'The results window.'#13#10'Also puts the results into the clipboard.'
+    Top = 216
+    Width = 75
+    Caption = 'Generate'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    OnClick = GenClick
+  end
+  object EditCustomSymbols: TBitBtn
+    AnchorSideLeft.Control = CustomSymbols
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CustomSymbols
+    AnchorSideTop.Side = asrCenter
+    Left = 354
+    Height = 25
+    Hint = 'Allows Editing of Custom Symbols'#13#10'Green background = unlocked'
+    Top = 136
+    Width = 26
+    BorderSpacing.Left = 10
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000064000000640000000000000000000000000000900000
+      00E0010101C2000000C3010101C4000000C4000000C3010101C4000000C30101
+      01C4000000C3000000D0000000CB030303130000000040444401010101ED0101
+      0123000000000000000000000000797F7F010000000000000000000000000000
+      00000000000000000000000000C20202025A0000000040444403000000EB1315
+      151500000000565B5B01555B5B01000000004C51510200000000565B5B01555B
+      5B010000000000000000000000B0030303620000000000000000000000EB0304
+      041500000000000000003F4343024F5454010000000040444403000000004044
+      44024448480200000000010101B20000005F0000000040444402010101EB0C0D
+      0D16000000004044440300000000424545020000000000000000000000000000
+      00004347470200000000000000B0040404610000000040444402000000EB0E0F
+      0F160000000000000000000000000904017D000000C40000008C0000003F0000
+      00000000000000000000010101B2010101600000000000000000010101EB0202
+      02140000000040444402000000000000008584571FFFB4782EFF482E0DFC0000
+      00580000000000000000000000B7020202630000000040444403000000EB1213
+      13170000000040444402000000000000004E81551FFFFDAA45FFD9923AFF432A
+      0CFC000000580000000001010179040505410000000000000000000000EB0304
+      041500000000000000000000000000001010000000C8A8702BFFFCAA44FFD992
+      3AFF422A0CFC0000005800000000000000003C40400240444402010101EB0C0D
+      0D160000000040444403313434010000000000000618000000CBA9712BFFFCAA
+      44FFD9913AFF422A0CFC0000005800000000000000003F434302000000EB1011
+      111300000000000000005D626201000000000000000000000616000000CBA971
+      2BFFFCAA44FFD8913AFF41290BFC000000580000000000000000010101EC0000
+      002E383C3C021D1F1F070B0D0D06232626080809090600000000000005170000
+      00CCA9712CFFFCAA44FFDA923AFF4B300EFC0000005A000000000000007E0101
+      01E0000000CE010101CF000000CF000000CF010101D3000000B0413A34030000
+      0517000000CCAD732CFFE79B3EFE613F15FF1A0E03FD00000053000000000000
+      00250708083601010133040404330607073400000033090A0A2B1B1D1D020000
+      000000000518000000CD39240AFFB4782EFFD58F38FF1C1003EA4A4F4F010000
+      0000000000000000000000000000000000000000000000000000414545032C2F
+      2F01000000000000051A000000CDAA712CFFC48333FF382309F0000000004044
+      4402404444020000000040444403000000004044440240444402000000004044
+      44032A2D2D010000000000020C19000000A31B1004CB68441853
+    }
+    ImageWidth = 20
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 3
+    OnClick = EditCustomSymbolsClick
+  end
+  object Passwords: TListBox
+    Left = 56
+    Height = 104
+    Hint = 'Results of Password generated'
+    Top = 216
+    Width = 272
+    Color = clWindowFrame
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Consolas'
+    Font.Pitch = fpFixed
+    Font.Quality = fqDraft
+    ItemHeight = 0
+    ParentShowHint = False
+    ParentFont = False
+    ShowHint = True
+    TabOrder = 5
+    OnClick = PasswordsClick
+  end
+  object Label1: TLabel
+    AnchorSideTop.Control = PasswordLength
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = PasswordLength
+    Left = 206
+    Height = 21
+    Hint = 'Set the length of generated passwords'#13#10'Range 8 - 30'
+    Top = 70
+    Width = 118
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 6
+    Caption = 'Password Length'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+  end
+  object Label2: TLabel
+    AnchorSideTop.Control = NumberToGen
+    AnchorSideTop.Side = asrCenter
+    AnchorSideRight.Control = NumberToGen
+    Left = 181
+    Height = 21
+    Hint = 'Choose How Many Passwords to'#13#10'generate each time the button is pressed'#13#10'Max :50'
+    Top = 105
+    Width = 143
+    Anchors = [akTop, akRight]
+    BorderSpacing.Right = 6
+    Caption = 'Number to Generate'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+  end
+  object CopyToClipboard: TButton
+    Left = 336
+    Height = 25
+    Hint = 'Copies the Selected line to the clipboard'#13#10'If nothing is selected it copies the full results window to clipboard'
+    Top = 255
+    Width = 75
+    Caption = 'Copy'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 6
+    OnClick = CopyToClipboardClick
+  end
+  object Button1: TButton
+    Left = 336
+    Height = 25
+    Hint = 'Quit'#13#10'Exit'#13#10'leave'
+    Top = 294
+    Width = 75
+    Caption = 'Exit'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -16
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ModalResult = 11
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 7
+    OnClick = Button1Click
+  end
+  object UpCheck: TCheckBox
+    Left = 56
+    Height = 17
+    Hint = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    Top = 48
+    Width = 18
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 8
+  end
+  object loCheck: TCheckBox
+    AnchorSideLeft.Control = UpCheck
+    AnchorSideTop.Control = UpCheck
+    AnchorSideTop.Side = asrBottom
+    Left = 56
+    Height = 17
+    Hint = 'abcdefghijklmnopqrstuvwxyz'
+    Top = 71
+    Width = 18
+    BorderSpacing.Top = 6
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 9
+    OnChange = loCheckChange
+  end
+  object NumCheck: TCheckBox
+    AnchorSideLeft.Control = loCheck
+    AnchorSideTop.Control = loCheck
+    AnchorSideTop.Side = asrBottom
+    Left = 56
+    Height = 17
+    Hint = '0123456789'
+    Top = 94
+    Width = 18
+    BorderSpacing.Top = 6
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 10
+  end
+  object FsCheck: TCheckBox
+    AnchorSideLeft.Control = NumCheck
+    AnchorSideTop.Control = NumCheck
+    AnchorSideTop.Side = asrBottom
+    Left = 56
+    Height = 17
+    Hint = '!@#$%^&*()[]{},.=-_+'
+    Top = 117
+    Width = 18
+    BorderSpacing.Top = 6
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 11
+    OnChange = FsCheckChange
+  end
+  object CSCheck: TCheckBox
+    AnchorSideLeft.Control = FsCheck
+    AnchorSideTop.Control = FsCheck
+    AnchorSideTop.Side = asrBottom
+    Left = 56
+    Height = 17
+    Hint = 'Uses the symbols in the textbox to the right.'
+    Top = 140
+    Width = 18
+    BorderSpacing.Top = 6
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 12
+    OnChange = CSCheckChange
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = UpCheck
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = UpCheck
+    AnchorSideTop.Side = asrCenter
+    Left = 80
+    Height = 20
+    Hint = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    Top = 46
+    Width = 76
+    BorderSpacing.Left = 6
+    Caption = 'Upper Case'
+    Color = clWindowFrame
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = Label3Click
+  end
+  object Label4: TLabel
+    AnchorSideLeft.Control = UpCheck
+    AnchorSideBottom.Control = UpCheck
+    Left = 104
+    Height = 23
+    Top = 15
+    Width = 246
+    Anchors = []
+    BorderSpacing.Left = 62
+    BorderSpacing.Bottom = 10
+    Caption = 'Password Must Contain'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'Showcard Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    AnchorSideLeft.Control = loCheck
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = loCheck
+    AnchorSideTop.Side = asrCenter
+    Left = 80
+    Height = 20
+    Hint = 'abcdefghijklmnopqrstuvwxyz'
+    Top = 69
+    Width = 75
+    BorderSpacing.Left = 6
+    Caption = 'Lower Case'
+    Color = clWindowFrame
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = Label5Click
+  end
+  object Label6: TLabel
+    AnchorSideLeft.Control = NumCheck
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = NumCheck
+    AnchorSideTop.Side = asrCenter
+    Left = 80
+    Height = 20
+    Hint = '0123456789'
+    Top = 92
+    Width = 60
+    BorderSpacing.Left = 6
+    Caption = 'Numbers'
+    Color = clWindowFrame
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = Label6Click
+  end
+  object Label7: TLabel
+    AnchorSideLeft.Control = FsCheck
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = FsCheck
+    AnchorSideTop.Side = asrCenter
+    Left = 80
+    Height = 20
+    Hint = '!@#$%^&*()[]{},.=-_+'
+    Top = 115
+    Width = 56
+    BorderSpacing.Left = 6
+    Caption = 'Symbols'
+    Color = clWindowFrame
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = Label7Click
+  end
+  object Label8: TLabel
+    AnchorSideLeft.Control = CSCheck
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = CSCheck
+    AnchorSideTop.Side = asrCenter
+    Left = 80
+    Height = 20
+    Hint = 'Uses the symbols in the textbox to the right.'
+    Top = 138
+    Width = 110
+    BorderSpacing.Left = 6
+    Caption = 'Custom Symbols'
+    Color = clWindowFrame
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = Label8Click
+  end
+  object loReq: TCheckBox
+    AnchorSideLeft.Control = UpCheck
+    AnchorSideTop.Control = CSCheck
+    AnchorSideTop.Side = asrBottom
+    Left = 56
+    Height = 17
+    Hint = 'abcdefghijklmnopqrstuvwxyz'
+    Top = 163
+    Width = 18
+    BorderSpacing.Top = 6
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 13
+    OnChange = loReqChange
+  end
+  object Label9: TLabel
+    AnchorSideLeft.Control = loCheck
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = loReq
+    AnchorSideTop.Side = asrCenter
+    Left = 80
+    Height = 20
+    Hint = 'Selecting this will make all passwords start '#13#10'with Lower Case character.'
+    Top = 161
+    Width = 173
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 3
+    Caption = 'First Character Lower Case'
+    Color = clWindowFrame
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = False
+    OnClick = Label9Click
+  end
+end
