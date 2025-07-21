@@ -15,6 +15,7 @@ object Form1: TForm1
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormCreate
   object NumberToGen: TSpinEdit
     AnchorSideLeft.Control = EditCustomSymbols
@@ -504,28 +505,23 @@ object Form1: TForm1
     Transparent = False
     OnClick = Label9Click
   end
-  object SplashAbout1: TSplashAbout
-    PoweredBy.About.Description.Strings = (
-      'Component that shows a Powered By graphic.'#13#10'Use method ShowPoweredByForm in your form.create()'#13#10'to use the component'
-    )
-    PoweredBy.About.Title = 'About PoweredBy component'
-    PoweredBy.About.Height = 280
-    PoweredBy.About.Width = 400
-    PoweredBy.About.Font.Color = clNavy
-    PoweredBy.About.Font.Height = -13
-    PoweredBy.About.Font.Name = 'Arial'
-    PoweredBy.About.BackGroundColor = clWindow
-    PoweredBy.About.Version = '1.2.0.0'
-    PoweredBy.About.Authorname = 'Gordon Bamber'
-    PoweredBy.About.Organisation = 'Public Domain'
-    PoweredBy.About.AuthorEmail = 'minesadorada@charcodelvalle.com'
-    PoweredBy.About.ComponentName = 'PoweredBy component'
-    PoweredBy.About.LicenseType = abModifiedGPL
-    Author = 'Danny bush'
-    UserTitle = 'Password Gen'
-    ShowDescription = True
-    Description = 'Generate Secure Password'
-    Left = 414
-    Top = 35
+  object btnAbout: TSpeedButton
+    Left = 392
+    Height = 22
+    Hint = 'Show About Dialog'
+    Top = 16
+    Width = 23
+    Caption = 'A'
+    Color = clWindowFrame
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clWindowFrame
+    Font.Height = -15
+    Font.Name = 'Segoe UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ShowHint = True
+    ParentFont = False
+    ParentShowHint = False
+    OnClick = btnAboutClick
   end
 end

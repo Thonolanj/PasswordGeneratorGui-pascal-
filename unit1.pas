@@ -34,7 +34,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Spin,
-  StdCtrls, Buttons, INIfiles, clipbrd, usplashabout;
+  StdCtrls, Buttons, INIfiles, clipbrd, uAboutBox;
 
 type
 
@@ -48,6 +48,7 @@ type
     PasswordLength: TSpinEdit;
     NumberToGen: TSpinEdit;
     Passwords: TListBox;
+    btnAbout: TSpeedButton;
     UpCheck: TCheckBox;
     loCheck: TCheckBox;
     NumCheck: TCheckBox;
@@ -65,7 +66,6 @@ type
     Label7: TLabel; // For FsCheck
     Label8: TLabel; // For CSCheck
     Label9: TLabel; // For loReq
-    SplashAbout1: TSplashAbout;
 
     // --- Event Handlers ---
     procedure FormCreate(Sender: TObject);
@@ -89,6 +89,7 @@ type
     procedure Label8Click(Sender: TObject);
     procedure Label9Click(Sender: TObject);
     procedure PasswordsClick(Sender: TObject);
+    procedure btnAboutClick(Sender: TObject);
 
   private
     // --- Private Fields ---
@@ -136,7 +137,7 @@ begin
   // Set the initial symbol set based on loaded settings
   UpdateSymbolSet;
   // Set initial focus to the 'Generate' button for better UX
-  Gen.SetFocus;
+//  Gen.SetFocus;
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -216,6 +217,25 @@ begin
     Clipboard.AsText := Passwords.GetSelectedText;
     Passwords.ClearSelection
   end;
+end;
+
+procedure TForm1.btnAboutClick(Sender: TObject);
+  var
+    AboutForm: TAboutBox;
+  begin
+    // Create an instance of the AboutBox form.
+    AboutForm := TAboutBox.Create(nil);
+    try
+      // Call our new procedure to have the form populate itself
+      // with the application's compiled-in information.
+      AboutForm.LoadAppInfo;
+
+      // Show the form modally.
+      AboutForm.ShowModal;
+    finally
+      // Free the form's memory.
+      AboutForm.Free;
+    end;
 end;
 
 //==============================================================================
