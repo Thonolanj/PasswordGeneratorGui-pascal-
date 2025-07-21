@@ -50,9 +50,16 @@ A GUI-based password generator written in Object Pascal using Lazarus/Free Pasca
 
 - `Unit1.pas` – Main form source code (application logic)
 - `Unit1.lfm` – Form definition (GUI layout)
+- `uaboutbox.pas` - Source code for the About box popup
+- `uaboutbox.lfm` - Form definition for the About box popup
 - `PasswordGen.ini` – User settings (auto-generated)
 
 ## Getting Started
+
+Download the latest relase PasswordGen.exe
+Place the EXE file on your Desktop. 
+Double click the file to run. 
+No install needed
 
 ### Requirements
 
@@ -61,7 +68,7 @@ A GUI-based password generator written in Object Pascal using Lazarus/Free Pasca
 
 ### Build Instructions
 
-1. Open `Unit1.pas` in Lazarus IDE.
+1. Open `PasswordGen.lpi` in Lazarus IDE.
 2. Build the project (`Run` > `Build`).
 3. Run the compiled executable.
 
