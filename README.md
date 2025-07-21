@@ -1,4 +1,4 @@
-# Lazarus Password Generator
+# Password Generator
 
 A GUI-based password generator written in Object Pascal using Lazarus/Free Pascal. This application allows users to generate one or more strong and customizable passwords, with options for character sets, length, and clipboard integration. User preferences are stored automatically for convenience.
 
@@ -57,7 +57,7 @@ A GUI-based password generator written in Object Pascal using Lazarus/Free Pasca
 ### Requirements
 
 - [Lazarus IDE](https://www.lazarus-ide.org/) (tested with Free Pascal Compiler)
-- Windows, Linux, or macOS
+- Windows
 
 ### Build Instructions
 
@@ -79,11 +79,11 @@ A GUI-based password generator written in Object Pascal using Lazarus/Free Pasca
 
 ## License
 
-*Specify your license here (e.g., MIT, GPL).*
+MIT license
 
 ## Author
 
-- *Your Name or GitHub Username here*
+- Thonolanj
 
 ---
 
