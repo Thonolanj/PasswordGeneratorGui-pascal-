@@ -56,10 +56,10 @@ A GUI-based password generator written in Object Pascal using Lazarus/Free Pasca
 
 ## Getting Started
 
-Download the latest relase PasswordGen.exe
-Place the EXE file on your Desktop. 
-Double click the file to run. 
-No install needed
+- Download the latest relase PasswordGen.exe
+- Place the EXE file on your Desktop. 
+- Double click the file to run. 
+- No install needed
 
 ### Requirements
 
