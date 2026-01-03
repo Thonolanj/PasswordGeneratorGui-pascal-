@@ -1,0 +1,92 @@
+
+name: Lazarus CI (Build + Test)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Lazarus per OS
+      - name: Install Lazarus (Windows via Chocolatey)
+        if: matrix.os == 'windows-latest'
+        run: choco install lazarus --yes --no-progress
+        shell: powershell
+
+      - name: Install Lazarus/FPC (Ubuntu via apt)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lazarus
+        shell: bash
+
+      - name: Verify lazbuild
+        run: lazbuild --version
+        shell: bash
+
+      # Build the app
+      - name: Create build directory
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            mkdir -p build
+          else
+            powershell -Command "New-Item -ItemType Directory -Force -Path build"
+          fi
+        shell: bash
+
+      - name: Build app (.lpi)  # EDIT ME: path to your main .lpi file
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            lazbuild --build-all --quiet --output="build/PasswordGeneratorGui" src/PasswordGeneratorGui.lpi
+          else
+            powershell -Command `
+              "lazbuild --build-all --quiet --output='build\\PasswordGeneratorGui.exe' src\\PasswordGeneratorGui.lpi"
+          fi
+        shell: bash
+
+      # (Optional) Build tests and run them
+      - name: Build tests (.lpi)  # EDIT ME: path to your tests .lpi file (remove this step if you have no tests yet)
+        continue-on-error: false
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            lazbuild --build-all --quiet --output="build/PasswordGeneratorTests" tests/PasswordGeneratorTests.lpi
+          else
+            powershell -Command `
+              "lazbuild --build-all --quiet --output='build\\PasswordGeneratorTests.exe' tests\\PasswordGeneratorTests.lpi"
+          fi
+        shell: bash
+
+      - name: Run tests
+        if: always()  # runs if previous step exists; remove if you don't have tests
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            chmod +x build/PasswordGeneratorTests
+            ./build/PasswordGeneratorTests
+          else
+            powershell -Command "Start-Process -FilePath .\\build\\PasswordGeneratorTests.exe -Wait -NoNewWindow; exit $LASTEXITCODE"
+          fi
+        shell: bash
+
+      # Upload the built app as an artifact
+      - name: Upload artifact (app)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-PasswordGeneratorGui
+          path: |
+            build/PasswordGeneratorGui*
+            build/PasswordGeneratorGui.exe
+          if-no-files-found: ignore
+``
