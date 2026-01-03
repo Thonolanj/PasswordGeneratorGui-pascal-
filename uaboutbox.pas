@@ -58,48 +58,55 @@ const
 {$R *.lfm}
 
 procedure TAboutBox.Button1Click(Sender: TObject);
-
-  var
-  // Dialog will be the form for our message box.
+var
   Dialog: TForm;
-  // Memo will be the scrollable text area.
   Memo: TMemo;
+  BottomPanel: TPanel;
+  OKButton: TButton;
 begin
-  // CreateMessageDialog is a powerful LCL function that creates a standard
-  // dialog form for us, complete with an OK button.
-  // We pass it a caption and a placeholder message (which we will ignore).
-  Dialog := CreateMessageDialog('License Information', '', mtInformation, [mbOK]);
+  // Create a new, blank form to act as our dialog.
+  Dialog := TForm.Create(nil);
   try
-    // Set a good size for our dialog box.
-    Dialog.Width := 600;
-    Dialog.Height := 500;
-    // Ensure it appears in the center of the screen.
+    // --- 1. Configure the Main Dialog Form ---
+    Dialog.Caption := 'License Information';
+    Dialog.Width := 650;
+    Dialog.Height := 650;
     Dialog.Position := poScreenCenter;
+    Dialog.BorderStyle := bsDialog;
 
-    // Create a TMemo component dynamically. We set its owner to 'Dialog'
-    // so that when the dialog is freed, the memo is automatically freed too.
+    // --- 2. Create a Panel at the bottom to hold our button ---
+    BottomPanel := TPanel.Create(Dialog);
+    BottomPanel.Parent := Dialog;
+    BottomPanel.Align := alBottom; // Snap it to the bottom of the form.
+    BottomPanel.Height := 40;     // Give it a fixed height.
+    BottomPanel.BevelOuter := bvNone; // Make its border invisible for a clean look.
+    BottomPanel.Caption := '';
+
+    // --- 3. Create the OK button and place it on the panel ---
+    OKButton := TButton.Create(Dialog);
+    OKButton.Parent := BottomPanel; // Place the button ON the panel.
+    OKButton.Caption := 'OK';
+    OKButton.ModalResult := mrOK; // This makes it automatically close the dialog.
+    OKButton.Anchors := [akTop, akRight]; // Keep it anchored to the top-right of the panel.
+    // Position it with a nice margin from the edge.
+    OKButton.SetBounds(BottomPanel.Width - 85, 8, 75, 25);
+
+    // --- 4. Create the Memo to fill the rest of the space ---
     Memo := TMemo.Create(Dialog);
-    Memo.Parent := Dialog; // Make the memo visible on the dialog.
-    Memo.Font.Size := Max(12, Memo.Font.Size);
-    // Configure the memo to be perfect for displaying a license.
+    Memo.Parent := Dialog;
+    // Align to client will now fill the space NOT occupied by BottomPanel.
+    Memo.Align := alClient;
     Memo.ReadOnly := True;
     Memo.ScrollBars := ssVertical;
     Memo.WordWrap := True;
+    Memo.Font.Size := Max(14, Memo.Font.Size); // Set min font size.
 
-    // This is the key: set its alignment to alClient. This makes the memo
-    // expand to fill all the available space on the dialog, leaving room
-    // for the button panel at the bottom that CreateMessageDialog made for us.
-    Memo.Align := alClient;
-
-    // Load our license text into the memo.
+    // --- 5. Load the text and show the dialog ---
     Memo.Lines.Text := MIT_LICENSE_TEXT;
-
-    // Finally, show the dialog modally. Execution will pause here until
-    // the user clicks the "OK" button.
     Dialog.ShowModal;
+
   finally
-    // CreateMessageDialog returns a form that we are responsible for freeing.
-    // The 'finally' block ensures this happens even if an error occurs.
+    // Free the dialog and all its child components from memory.
     Dialog.Free;
   end;
 end;

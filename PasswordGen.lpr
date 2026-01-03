@@ -7,16 +7,17 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Unit1
+  Forms, Unit1, uAboutBox
   { you can add units after this };
 
-{$R *.res}
+{$R PasswordGen.res}
 
 begin
   RequireDerivedFormResource:=True;
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TAboutBox, AboutBox);
   Application.Run;
 end.
 
